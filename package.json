@@ -1,0 +1,25 @@
+{
+  "name": "liri-node-app",
+  "version": "1.0.0",
+  "description": "liri bot assignment",
+  "main": "liri.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neilfr/liri-node-app.git"
+  },
+  "keywords": [
+    "liri"
+  ],
+  "author": "moi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neilfr/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/neilfr/liri-node-app#readme",
+  "dependencies": {
+    "dotenv": "^6.2.0"
+  }
+}
