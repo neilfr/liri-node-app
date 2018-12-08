@@ -10,33 +10,38 @@ var fs = require('fs-extra');
 var action=process.argv[2];
 var thing=process.argv[3];
 
-switch (action){
-    case 'concert-this':
-        displayEventInfo();
-        break;
-    case 'spotify-this-song':
-        displaySongInfo();
-        break;
-    case 'movie-this':
-        displayMovieInfo();
-        break;
-    case 'do-what-it-says':
-        doWhatItSays();
-        break;
-    default:
-        console.log("default");
+function goDoThis(){
+    switch (action){
+        case 'concert-this':
+            displayEventInfo();
+            break;
+        case 'spotify-this-song':
+            displaySongInfo();
+            break;
+        case 'movie-this':
+            displayMovieInfo();
+            break;
+        case 'do-what-it-says':
+            doWhatItSays();
+            break;
+        default:
+            console.log("default");
+    }
 }
 
 function doWhatItSays(){
     // Async with promises:
-    fs.readFile('random.txt',function(err,data){
+    fs.readFile('random.txt','utf-8',function(err,data){
         if (err){
             console.log("error: "+err);
         }
-        var instructions=data;
-        console.log(instructions);
-    });
-    
+        instructions=data.split(',');
+        action=instructions[0];
+        thing=instructions[1];
+        goDoThis();
+      //  var instructions=String.fromCharCode(data);
+      //  console.log(instructions);
+    });   
 }
 
 function displayMovieInfo(){
@@ -95,3 +100,5 @@ function displaySongInfo(){
             console.log(err);
         });
 }
+
+goDoThis();
