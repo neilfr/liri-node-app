@@ -13,10 +13,6 @@ console.log("thing is:"+thing);
 switch (action){
     case 'concert-this':
         displayEventList();
- /*       bandsintown.getArtistEventList(thing).then(function(events){
-            console.log("Event list");
-            console.log(events);
-        });*/
         break;
     case 'spotify-this-song':
         displaySongInfo();
@@ -27,15 +23,20 @@ switch (action){
 
 function displayEventList(){
     bandsintown.getArtistEventList(thing).then(function(events){
-        console.log("Event list");
-        console.log(events);
+        for(i=0;i<events.length;i++){
+            console.log(events[i].title);
+            console.log(events[i].datetime);
+            var thisVenue=events[i].venue;
+            console.log(thisVenue.name+', '+thisVenue.city+', '+thisVenue.region+', '+thisVenue.country);
+            console.log("");
+        }
+    }).catch(function(err){
+        console.log(err);
     });
 }
 
 function displaySongInfo(){
     spotify.search({ type: 'track', query: thing }).then(function(response){
-        console.log("Spotify response")
-        console.log(response);
         var songInfo=response.tracks.items[0];
         console.log(songInfo.artists[0].name);
         console.log(songInfo.name);
