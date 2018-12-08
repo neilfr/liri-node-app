@@ -5,6 +5,7 @@ var request = require('request');
 var moment = require('moment');
 var spotify = new Spotify(keys.spotify);
 var bandsintown = require('bandsintown')('codingbootcamp');
+var fs = require('fs-extra');
 
 var action=process.argv[2];
 var thing=process.argv[3];
@@ -19,8 +20,23 @@ switch (action){
     case 'movie-this':
         displayMovieInfo();
         break;
+    case 'do-what-it-says':
+        doWhatItSays();
+        break;
     default:
         console.log("default");
+}
+
+function doWhatItSays(){
+    // Async with promises:
+    fs.readFile('random.txt',function(err,data){
+        if (err){
+            console.log("error: "+err);
+        }
+        var instructions=data;
+        console.log(instructions);
+    });
+    
 }
 
 function displayMovieInfo(){

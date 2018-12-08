@@ -22,6 +22,7 @@
   "dependencies": {
     "bandsintown": "^1.0.1",
     "dotenv": "^6.2.0",
+    "fs-extra": "^7.0.1",
     "moment": "^2.22.2",
     "node-spotify-api": "^1.0.7",
     "omdb": "^0.8.0",
