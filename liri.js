@@ -76,8 +76,6 @@ function displayEventInfo(){
             console.log('error:', err);
         }
         var eventData=JSON.parse(body);
-        console.log('event data is:');
-        console.log(eventData);
         for (i=0;i<eventData.length;i++){
             var myDate=moment(eventData[i].datetime).format("MM DD YYYY");
             console.log("event date: "+myDate);
