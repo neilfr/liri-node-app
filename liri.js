@@ -67,19 +67,26 @@ function displayMovieInfo(){
 }
 
 function displayEventInfo(){
-    bandsintown.getArtistEventList(thing).then(function(events){
-        for(i=0;i<events.length;i++){
-            console.log("event title: "+events[i].title);
-            var myDate=moment(events[i].datetime).format("MM DD YYYY");
+    console.log("displaying event info");
+    console.log("the thing is: "+thing);
+    var appId='codingbootcamp';
+    var query="https://rest.bandsintown.com/artists/"+thing+"/events?app_id="+appId;
+    request(query, function(err, respones, body){
+        if(err){
+            console.log('error:', err);
+        }
+        var eventData=JSON.parse(body);
+        console.log('event data is:');
+        console.log(eventData);
+        for (i=0;i<eventData.length;i++){
+            var myDate=moment(eventData[i].datetime).format("MM DD YYYY");
             console.log("event date: "+myDate);
-            var thisVenue=events[i].venue;
+            var thisVenue=eventData[i].venue;
             console.log("event venue: "+thisVenue.name);
             console.log("event location: "+thisVenue.city+', '+thisVenue.region+', '+thisVenue.country);
             console.log("");
         }
-        }).catch(function(err){
-            console.log(err);
-        });
+    });
 }
 
 function displaySongInfo(){
